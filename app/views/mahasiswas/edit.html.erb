@@ -1,0 +1,55 @@
+<div id='wrapper'>
+<% if flash[:error] %>
+  <p class="alert-error"><%= flash[:error] %></p>
+<% end %>
+<h3>Edit Data <%= @mahasiswa.nama %></h3>
+<%= form_for :mahasiswa,:url => mahasiswa_path(@mahasiswa.id), :html => {:method => :put} do |form| %>
+<div id='content'>
+<table>
+<tr>
+	<td>NIM:</td>
+	<td><%= form.text_field :nim, :size=>60, :value=>@mahasiswa.nim %></td>
+</tr>
+<tr>
+	<td>Nama:</td>
+	<td><%= form.text_field :nama, :size=>60, :value=>@mahasiswa.nama %></td>
+</tr>
+<tr>
+	<td>Semester:</td>
+	<td><%= form.text_field :semester, :size=>4, :value=>@mahasiswa.semester %></td>
+</tr>
+<tr>
+	<td>Tingkat:</td>
+	<td><%= form.text_field :ttingkat, :size=>4, :value=>@mahasiswa.ttingkat %></td>
+</tr>
+<tr>
+	<td>Email:</td>
+	<td><%= form.text_field :email, :size=>60, :value=>@mahasiswa.email %></td>
+</tr>
+<tr>
+	<td>Phone:</td>
+	<td><%= form.text_field :phone, :size=>60, :value=>@mahasiswa.phone %></td>
+</tr>
+<tr>
+	<td valign="top">Alamat:</td>
+	<td><%= form.text_area :alamat, :rows=>3, :cols=>15, :value=>@mahasiswa.alamat %></td>
+</tr>
+<tr>
+	<td>Tempat Lahir:</td>
+	<td><%= form.text_field :tmptlahir, :size=>60, :value=>@mahasiswa.tmptlahir %></td>
+</tr>
+<tr>
+	<td>Tanggal Lahir:</td>
+	<td><%= form.text_field :tgllahir, :size=>30, :value=>@mahasiswa.tgllahir %></td>
+</tr>
+<tr>
+	<td colspan='2'>
+		<%= submit_tag "Save" %>
+	</td>
+</tr>
+</table>
+</div>
+<% end %>
+
+<%= link_to '<<Back', mahasiswas_path %>
+</div>
