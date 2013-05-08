@@ -1,0 +1,8 @@
+<h2>Import Mahasiswa</h2>
+
+<%= form_tag doimport_mahasiswa_path, :multipart => true do %>
+  <%= file_field_tag :file %>
+  <br/>
+  <%= submit_tag "Import" %>
+<% end %>
+
