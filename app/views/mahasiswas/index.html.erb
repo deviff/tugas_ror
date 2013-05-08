@@ -6,8 +6,9 @@
       <p class="alert-error"><%= flash[:error] %></p>
     <% end %>
 	<h3>Data Mahasiswa</h3>
-	<div id='new'><%= link_to 'Create', new_mahasiswa_path %></div> OR 
-	<div id='import'><%= link_to 'Import Form CSV', import_mahasiswa_path %></div>
+	<div id='new'><%= link_to 'Create', new_mahasiswa_path %> OR 
+	<%= link_to 'Import Form CSV', import_mahasiswa_path %> OR 
+	<%= link_to 'Import Form XLS', import_excel_mahasiswa_path %></div>
 <div id='main'>
 	<table class="table table-striped table-hover" align="center">
 		<thead>

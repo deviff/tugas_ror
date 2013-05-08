@@ -52,8 +52,31 @@ class MahasiswasController < ApplicationController
 		else 
 			flash[:notice] = 'mahasiswa.import.success' 
 			redirect_to mahasiswas_path
-	end 
+		end 
+	end
 end
+	
+	def import_excel
+		
+	end
+
+	def doimport_excel
+		# require 'spreadsheet'
+		Spreadsheet.client_encoding = 'UTF-8'
+		book = Spreadsheet.open params[:dump][:excel_file].tempfile
+		sheet1 = book.worksheet 0
+		sheet1.each do |row|
+		# you can do any interesing thing with row
+		mahasiswa = Mahasiswa.build_from_csv(row)
+		@sukses = mahasiswa.save
+		end
+		if @sukses
+			flash[:notice] = "Import Mahasiswa From Excel Successfully"
+			redirect_to :action => :index
+		else
+			flash[:error] = "Import Mahasiswa From Excel Failed"
+			redirect_to :action => :import_excel
+		end
 	end
 
 	def create

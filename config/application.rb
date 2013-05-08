@@ -1,5 +1,5 @@
 require File.expand_path('../boot', __FILE__)
-
+require 'spreadsheet'
 require 'rails/all'
 require 'csv'
 require 'iconv'
