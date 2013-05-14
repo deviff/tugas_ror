@@ -1,9 +1,28 @@
 class Mahasiswa < ActiveRecord::Base
-  attr_accessible :alamat, :email, :nama, :nim, :phone, :semester, :tgllahir, :tmptlahir, :ttingkat
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable,
+  # :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 
-  validates :nama, :nim, :presence => true
-  validates :email, :presence => true, :uniqueness => true,  :on => :create
-  validates :semester, :presence => true, :numericality => true
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :alamat, :email, :nama, :nim, :phone, :semester, :tgllahir, :tmptlahir, :ttingkat
+  attr_accessible :first_name, :last_name, :username
+
+  validates :username, :first_name, :presence => true
+  # validates :email, :presence => true, :uniqueness => true,  :on => :create
+  
+  #for facebooklogin
+  has_many :authentications, :dependent => :delete_all
+
+  def apply_omniauth(auth)
+      # In previous omniauth, 'user_info' was used in place of 'raw_info'
+      self.email = auth['extra']['raw_info']['email']
+      # Again, saving token is optional. If you haven't created the column in authentications table, this will fail
+      authentications.build(:provider => auth['facebook'], :uid => auth['153139011502431'], :token => auth['1bcd908a747e78ae59098e01a7c3dd66']['email'])
+  end
+  #---------------------------------------
 
   def self.csv_header 
   	"Nim,Nama,Semester,Tingkat,Email,Phone,Alamat,Tgllahir,Tmptlahir".split(',') 

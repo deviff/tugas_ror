@@ -24,6 +24,10 @@ end
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'spreadsheet'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'oauth2'
 
 group :development do
 	gem 'sqlite3'

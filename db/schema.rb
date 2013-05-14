@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130430171934) do
+ActiveRecord::Schema.define(:version => 20130514135659) do
+
+  create_table "authentications", :force => true do |t|
+    t.integer  "mahasiswa_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "token"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "mahasiswas", :force => true do |t|
     t.string   "nim"
@@ -23,8 +32,23 @@ ActiveRecord::Schema.define(:version => 20130430171934) do
     t.string   "alamat"
     t.date     "tgllahir"
     t.string   "tmptlahir"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "username"
   end
+
+  add_index "mahasiswas", ["email"], :name => "index_mahasiswas_on_email", :unique => true
+  add_index "mahasiswas", ["reset_password_token"], :name => "index_mahasiswas_on_reset_password_token", :unique => true
 
 end
