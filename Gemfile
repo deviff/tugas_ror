@@ -28,6 +28,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'oauth2'
+gem "mail", "2.4.4"
 
 group :development do
 	gem 'sqlite3'

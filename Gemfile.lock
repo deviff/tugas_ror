@@ -144,6 +144,7 @@ DEPENDENCIES
   devise
   jquery-rails
   kaminari
+  mail (= 2.4.4)
   oauth2
   omniauth
   omniauth-facebook
