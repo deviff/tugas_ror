@@ -11,11 +11,12 @@ class AuthenticationsController < ApplicationController
 	    sign_in_and_redirect(:mahasiswa, authentication.mahasiswa)
   	else
     	# Authentication not found, thus a new user.
-    	mahasiswa = Mahasiswa.new
-    	mahasiswa.apply_omniauth(auth)
-    	if mahasiswa.save(:validate => false)
+    	@mahasiswa = Mahasiswa.new
+    	@mahasiswa.apply_omniauth(auth)
+    	if @mahasiswa.save(:validate => false)
+    		MahasiswaMailer.welcome_email(@mahasiswa).deliver
 	      flash[:notice] = "Account created and signed in successfully."
-	      sign_in_and_redirect(:mahasiswa, mahasiswa)
+	      sign_in_and_redirect(:mahasiswa, @mahasiswa)
     	else
 	      flash[:error] = "Error while creating a mahasiswa account. Please try again."
 	      redirect_to root_url

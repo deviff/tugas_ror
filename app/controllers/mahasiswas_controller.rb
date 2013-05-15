@@ -1,5 +1,5 @@
 class MahasiswasController < ApplicationController
-	before_filter :authenticate_mahasiswa!
+	before_filter :authenticate_mahasiswa!, :only => [:new, :create, :edit, :update, :destroy]
 	def index
 		@mahasiswas = Mahasiswa.page(params[:page]).per(10)
 	end

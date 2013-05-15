@@ -7,7 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="page-header"><h2>Tugas Ruby On Rails</h2></div>
+<div class="page-header"><h2>Tugas Ruby On Rails</h2>
+<% if mahasiswa_signed_in? %>
+Selamat Datang, <%=current_mahasiswa.username%>
+<%=link_to 'Logout', destroy_mahasiswa_session_path, :method => 'delete' %>
+<% end %> </div>
 
 <%= yield %>
 

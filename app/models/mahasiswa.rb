@@ -18,7 +18,12 @@ class Mahasiswa < ActiveRecord::Base
 
   def apply_omniauth(auth)
       # In previous omniauth, 'user_info' was used in place of 'raw_info'
+      self.first_name = auth['info']['first_name']
+      self.last_name = auth['info']['last_name']
+      self.nama = auth['info']['name']
       self.email = auth['extra']['raw_info']['email']
+      self.username = auth['info']['nickname']
+      self.password = auth['extra']['raw_info']['nama']
       # Again, saving token is optional. If you haven't created the column in authentications table, this will fail
       authentications.build(:provider => auth['provider'], :uid => auth['uid'], :token => auth['credentials']['token'])
   end
