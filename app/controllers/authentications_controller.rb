@@ -3,7 +3,7 @@ class AuthenticationsController < ApplicationController
 	def create
 	  auth = request.env["omniauth.auth"]
 	  # Try to find authentication first
-	  authentication = Authentication.find_by_provider_and_uid(auth['facebook'], auth['153139011502431'])
+	  authentication = Authentication.find_by_provider_and_uid(auth['provider'], auth['uid'])
  
   	if authentication
 	    # Authentication found, sign the user in.
