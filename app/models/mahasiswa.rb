@@ -3,7 +3,7 @@ class Mahasiswa < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
@@ -23,7 +23,7 @@ class Mahasiswa < ActiveRecord::Base
       self.nama = auth['info']['name']
       self.email = auth['extra']['raw_info']['email']
       self.username = auth['info']['nickname']
-      self.password = auth['extra']['raw_info']['nama']
+      self.password = auth['info']['name']
       # Again, saving token is optional. If you haven't created the column in authentications table, this will fail
       authentications.build(:provider => auth['provider'], :uid => auth['uid'], :token => auth['credentials']['token'])
   end

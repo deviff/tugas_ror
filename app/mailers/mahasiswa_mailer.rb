@@ -4,6 +4,6 @@ class MahasiswaMailer < ActionMailer::Base
   def welcome_email(mahasiswa)
     @mahasiswa = mahasiswa
     @url  = "http://localhost:3000/mahasiswas/sign_in"
-    mail(:to => user.email, :subject => "Welcome to Mahasiswa Site")
+    mail(:to => @mahasiswa.email, :subject => "Welcome to Mahasiswa Site")
   end
 end
